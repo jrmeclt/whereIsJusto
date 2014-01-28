@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>
+		</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
+
+		<link rel="stylesheet" type="text/css" href="css/groupe.css" />
+		<script type="text/javascript" src="js/query.js"></script>
+	</head>
+	<body>
+	<form id='form1'>
+		<select class="type">
+			<option value="all">Tout</option>
+			<option value="person">Personne</option>
+			<option value="media">Media</option>
+			<option value="city">Ville</option>
+		</select>
+		<input type="text" name="query" class="query" size="60">
+		<select class="rows">
+			<option value="10">10</option>
+			<option value="20">20</option>
+			<option value="50">50</option>
+		</select>
+	</form>
+	<input type="button" value="rechercher" name="btn_query" class="btn_query">
+	<div id="results"></div>
+	</body>
+</html>
