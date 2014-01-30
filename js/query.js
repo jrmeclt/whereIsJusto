@@ -128,8 +128,9 @@ function query(){
 
 function afficherPersonne(person){
 						console.log(person['firstname']);
+						pictoUrl='images/picto/person'
 	
-				var html = "<div class='person'>"+person['firstname']+"</div>";
+				var html = "<div class='person'><img src='images/picto/person.gif'/>"+person['firstname']+" "+person['lastname']+"</div>";
 	
 	return html;		
 
@@ -138,7 +139,7 @@ function afficherPersonne(person){
 function afficherVille(city){
 						console.log(city);
 	
-	var html = '<div class="city">'+city["city.name"]+'</div>';
+	var html = '<div class="city"><img src="images/picto/city.gif"/>'+city["city.code"]+' '+city["city.name"]+' '+city["city.region.name"]+'</div>';
 	
 	return html;				
 
