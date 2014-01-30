@@ -1,0 +1,7 @@
+QUERY LUCENE
+------------
+
+facettes - role
+
+http://localhost:8983/solr/select/?q=*:*&facet=true&facet.field=role&start=0&rows=20&fl=facet.field
+
