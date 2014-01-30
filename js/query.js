@@ -96,22 +96,10 @@ function query(){
 					console.log("qqch");
 					html += afficherMedia(result);
 				}
-				/*else if(result.role=='audio'){
-					console.log("audio");
-					html += afficherAudio(result);
-
-				}
-				else if(result.role=='video'){
-					console.log("Video");
-					html += afficherVideo(result);
-				}
-				else if(result.role=='image'){
-					console.log("image");
-					html
-				}*/
+				
 				
 				else{
-					//console.log(result.role);
+					console.log('erreur');
 				}
 
 				//$( "div" ).append( document.createTextNode(i+1+" "+result.role));
@@ -153,13 +141,3 @@ function afficherMedia(media){
 	return html;				
 
 }
-
-/*$.ajax({
-  'url': 'http://yoursolrserver.com/solr/select',
-  'data': {'wt':'json', 'q':'your search goes here'},
-  'success': function(data) { /* process e.g. data.response.docs...  }
-  'dataType': 'jsonp',
-  'jsonp': 'json.wrf'
-});
-
-*/
