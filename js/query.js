@@ -1,10 +1,13 @@
 $("document").ready(function(){
+	getFacet();
+
 	$(".btn_query").click(function(){
 		 	//cherche la requete
 		 	
 		 	//console.log(reqVal);
 		 	query();
 	});
+	
 	
 	$('#form1').submit(function() {
 		event.preventDefault();
@@ -33,6 +36,7 @@ function query(){
 	request['rows'] = $(".rows").val();	
 	request['start'] = 0;	
 	request['wt'] = "json";
+	request['']= "";
 	var dataType = 'jsonp';
 	var url="http://localhost:8983/solr/select";	
 	/*$.ajax(dataType, url, request, function(result, status, data) {	
@@ -140,4 +144,37 @@ function afficherMedia(media){
 	
 	return html;				
 
+}
+
+function getFacet(){
+	var request = {};	
+	request['q'] = '*:*';	
+	request['rows'] = $(".rows").val();
+	request['facet']='true';
+	//request['start'] = 0;	
+	request['wt'] = "json";
+	request['']= "";
+	var dataType = 'jsonp';
+	var url="http://localhost:8983/solr/select";
+
+	$.ajax({
+		//type: "POST",
+		dataType: "jsonp",
+		url: url,
+		
+		'jsonp': 'json.wrf',
+		'data': request,
+		
+		
+		
+		//data: { start_date : start_date, end_date: end_date, sexe: sexe, species: species },
+		error: function () {
+			console.log('error');
+		},
+		success: function (data) {
+			console.log("ou");
+		
+		}
+	
+		});
 }
