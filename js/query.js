@@ -18,13 +18,18 @@ function query(){
 	//reqVal= $(".query").val();
 	//console.log(reqVal);
 	
-	var query=$(".query").val();
-	if(query==null){
-		q='*:*';
+	//var query=$(".query").val();
+	if($(".query").val() != ''){
+		//q='*:*';
+		var q=$(".query").val();
+
+	}
+	else {
+		var q = '*:*';
 	}
 	
 	var request = {};	
-	request['q'] = query;	
+	request['q'] = q;	
 	request['rows'] = $(".rows").val();	
 	request['start'] = 0;	
 	request['wt'] = "json";
