@@ -3,30 +3,40 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Where is Justo</title>
-		<link rel="stylesheet" type="text/css" href="css/groupe.css" />
+		<link rel="stylesheet" type="text/css" href="css/whereIsJusto.css" />
 		<script type="text/javascript" src="js/query.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
 	</head>
-	
+
 	<body>
-		<form id='form1'>
-		<select class="type">
-			<option value="all">Tout</option>
-			<option value="person">Personne</option>
-			<option value="text">Text</option>
-			<option value="audio">Audio</option>
-			<option value="video">Video</option>
-			<option value="image">Image</option>
-			<option value="city">Ville</option>
-		</select>
-		<input type="text" name="query" class="query" size="60">
-		<select class="rows">
-			<option value="10">10</option>
-			<option value="20">20</option>
-			<option value="50">50</option>
-		</select>
-	</form>
-	<input type="button" value="rechercher" name="btn_query" class="btn_query">
-	<div id="results"></div>
+		<div id="main-wrapper">
+            <div id="content-wrapper">
+            	<div id="header">
+                    <div id="section-title">Where Is Justo</div>
+                </div>
+
+				<form id='form1'>
+				<select class="type">
+					<option value="all">Tout</option>
+					<option value="person">Personne</option>
+					<option value="text">Text</option>
+					<option value="audio">Audio</option>
+					<option value="video">Video</option>
+					<option value="image">Image</option>
+					<option value="city">Ville</option>
+				</select>
+				<input type="text" name="query" class="query" size="60">
+				<select class="rows">
+					<option value="10">10</option>
+					<option value="20">20</option>
+					<option value="50">50</option>
+				</select>
+			</form>
+
+			<input type="button" value="rechercher" name="btn_query" class="btn_query">
+			<div id="results"></div>
+		</div>
+	</div>
+
 	</body>
 </html>
