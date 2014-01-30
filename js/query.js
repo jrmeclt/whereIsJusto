@@ -1,5 +1,5 @@
 $("document").ready(function(){
-	getFacet();
+	getFacet('role');
 
 	$(".btn_query").click(function(){
 		 	//cherche la requete
@@ -146,11 +146,12 @@ function afficherMedia(media){
 
 }
 
-function getFacet(){
+function getFacet(field){
 	var request = {};	
 	request['q'] = '*:*';	
 	request['rows'] = $(".rows").val();
 	request['facet']='true';
+	request['facet.field']=field;
 	//request['start'] = 0;	
 	request['wt'] = "json";
 	request['']= "";
@@ -172,8 +173,18 @@ function getFacet(){
 			console.log('error');
 		},
 		success: function (data) {
-			console.log("ou");
-		
+			
+			var facet= data.facet_counts;
+			console.log(facet.facet_fields);
+			var uneBalise = "d";
+			console.log(facet.facet_fields.role.length);
+
+			for (var i = 0; i < facet.facet_fields.role.length; i=i+2){
+			 	var value = facet.facet_fields.role[i];
+				uneBalise += "<p>"+value+"</p>";
+			}
+			console.log(uneBalise);
+			$("#picto").append(uneBalise);
 		}
 	
 		});
