@@ -88,8 +88,18 @@ function query(){
 
 				}
 				else if(result.role=='text'){
-					console.log("media");
+					console.log("text");
 				}
+				else if(result.role=='audio'){
+					console.log("audio");
+				}
+				else if(result.role=='video'){
+					console.log("video");
+				}
+				else if(result.role=='image'){
+					console.log("image");
+				}
+				
 				else{
 					console.log(result.role);
 				}
