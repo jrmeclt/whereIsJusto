@@ -85,28 +85,33 @@ function query(){
 				
 				var result=data.response.docs[i];
 				if(result.role=='person'){
-					afficherPersonne(result);
+					html += afficherPersonne(result);
 				}
 				else if(result.role=='city'){
 					//console.log("ville");
 					html += afficherVille(result);
 
 				}
-				else if(result.role=='text'){
-					console.log("text");
+				else if(result.role=='text'||'audio'||'video'||'image'){
+					console.log("qqch");
+					html += afficherMedia(result);
 				}
-				else if(result.role=='audio'){
+				/*else if(result.role=='audio'){
 					console.log("audio");
+					html += afficherAudio(result);
+
 				}
 				else if(result.role=='video'){
-					console.log("video");
+					console.log("Video");
+					html += afficherVideo(result);
 				}
 				else if(result.role=='image'){
 					console.log("image");
-				}
+					html
+				}*/
 				
 				else{
-					console.log(result.role);
+					console.log("erreur");
 				}
 
 				//$( "div" ).append( document.createTextNode(i+1+" "+result.role));
@@ -122,9 +127,11 @@ function query(){
 };
 
 function afficherPersonne(person){
-						console.log("personne");
+						console.log(person['firstname']);
 	
-						
+				var html = "<div class='person'>"+person['firstname']+"</div>";
+	
+	return html;		
 
 }
 
@@ -132,6 +139,15 @@ function afficherVille(city){
 						console.log(city);
 	
 	var html = '<div class="city">'+city["city.name"]+'</div>';
+	
+	return html;				
+
+}
+
+function afficherMedia(media){
+						console.log(media);
+	
+	var html = '<div class="text">'+media["groupname"]+'</div>';
 	
 	return html;				
 
