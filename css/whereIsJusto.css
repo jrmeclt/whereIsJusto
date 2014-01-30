@@ -118,3 +118,7 @@ page 1
     width: 300px;
     margin: 5px;
 }
+
+.facet {
+	cursor: pointer;
+}

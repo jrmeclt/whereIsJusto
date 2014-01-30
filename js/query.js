@@ -10,6 +10,18 @@ $("document").ready(function(){
 		 	query();
 	});
 	
+	$("#side_search").on('click', '.facet', function(){
+		 	//cherche la requete
+		 	//$( this ).slideUp();
+		 	//console.log(reqVal);
+		 	var keyword = $(this).attr('id');
+		 	var parent = $(this).parent().attr('id');
+		 	
+		 	//console.log(keyword+parent);
+		 	
+		 	query(keyword,parent);
+	});
+	
 	
 	$('#form1').submit(function() {
 		event.preventDefault();
@@ -19,9 +31,14 @@ $("document").ready(function(){
 
 })
 
-function query(){
+function query(id,parent){
+	id = id || "";
+	parent = parent || "";
 	//reqVal= $(".query").val();
 	//console.log(reqVal);
+	
+	console.log(id.length);
+	
 	
 	//var query=$(".query").val();
 	if($(".query").val() != ''){
@@ -34,7 +51,15 @@ function query(){
 	}
 	
 	var request = {};	
-	request['q'] = q;	
+	if(id.length){
+		//var truc = $(".").val();
+		request['q']= parent+':'+id;
+	}
+	else{
+		request['q'] = q;
+	}
+	
+	
 	request['rows'] = $(".rows").val();	
 	request['start'] = 0;	
 	request['wt'] = "json";
@@ -185,7 +210,7 @@ function getFacet(field){
 				
 			 	var value = facet[i];
 			 	var result = facet[i+1];
-				uneBalise += "<p>"+value+" "+result+"</p>";
+				uneBalise += "<p id='"+value+"' class='facet'>"+value+" "+result+"</p>";
 			}
 			console.log(uneBalise);
 			$("#"+field+"").append(uneBalise);
