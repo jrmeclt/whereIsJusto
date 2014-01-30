@@ -94,7 +94,7 @@ page 1
     line-height: 25px;
 }
 
-#tags, #groupname, #picto {
+#tags, #groupname,#role  {
     width:180px;
     float:left;
     margin-left:20px;

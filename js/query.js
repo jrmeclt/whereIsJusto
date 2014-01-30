@@ -167,7 +167,6 @@ function getFacet(field){
 		'data': request,
 		
 		
-		
 		//data: { start_date : start_date, end_date: end_date, sexe: sexe, species: species },
 		error: function () {
 			console.log('error');
@@ -176,15 +175,17 @@ function getFacet(field){
 			
 			var facet= data.facet_counts;
 			console.log(facet.facet_fields);
-			var uneBalise = "d";
+			var uneBalise = "";
 			console.log(facet.facet_fields.role.length);
 
 			for (var i = 0; i < facet.facet_fields.role.length; i=i+2){
+				
 			 	var value = facet.facet_fields.role[i];
-				uneBalise += "<p>"+value+"</p>";
+			 	var result = facet.facet_fields.role[i+1];
+				uneBalise += "<p>"+value+" "+result+"</p>";
 			}
 			console.log(uneBalise);
-			$("#picto").append(uneBalise);
+			$("#"+field+"").append(uneBalise);
 		}
 	
 		});
