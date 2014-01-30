@@ -111,7 +111,7 @@ function query(){
 				}*/
 				
 				else{
-					console.log(result.role);
+					//console.log(result.role);
 				}
 
 				//$( "div" ).append( document.createTextNode(i+1+" "+result.role));
