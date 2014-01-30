@@ -1,7 +1,49 @@
 QUERY LUCENE
 ------------
 
+paramètres de base
+******************
+http://localhost:8983/solr/select?indent=on&version=2.2
+
+rechercher sur tout 
+*******************
+http://localhost:8983/solr/select?indent=on&version=2.2&q=*%3A*&fq=&start=0&rows=10&fl=*%2Cscore&qt=&wt=&explainOther=&hl.fl=
+
+
 facettes - role
+****************
+http://localhost:8983/solr/select?indent=on&version=2.2&q=*:*&facet=true&facet.field=role&start=0&rows=20&fl=facet.field
 
-http://localhost:8983/solr/select/?q=*:*&facet=true&facet.field=role&start=0&rows=20&fl=facet.field
 
+facettes - keywords
+*******************
+http://localhost:8983/solr/select?indent=on&version=2.2&q=*:*&facet=true&facet.field=tag&start=0&rows=20&fl=facet.field&spellcheck=true
+
+
+facettes - groupname
+********************
+http://localhost:8983/solr/select/?q=*:*&facet=true&facet.field=groupname&start=0&rows=20&fl=facet.field&spellcheck=true
+
+spellcheck
+**********
+&spellcheck=true
+
+
+start / end
+***********
+&start=
+&rows=
+
+exemple : ...&start=0&rows=50...
+
+affichage selon facet
+*********************
+&fl=facet.field
+
+OU
+
+&fl=facet.query
+
+OU
+
+&fl=facet.count
