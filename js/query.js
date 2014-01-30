@@ -1,5 +1,7 @@
 $("document").ready(function(){
 	getFacet('role');
+	getFacet('tag');
+	getFacet('groupname');
 
 	$(".btn_query").click(function(){
 		 	//cherche la requete
@@ -152,6 +154,7 @@ function getFacet(field){
 	request['rows'] = $(".rows").val();
 	request['facet']='true';
 	request['facet.field']=field;
+	request['f.tag.facet.limit']=6;
 	//request['start'] = 0;	
 	request['wt'] = "json";
 	request['']= "";
@@ -173,15 +176,15 @@ function getFacet(field){
 		},
 		success: function (data) {
 			
-			var facet= data.facet_counts;
-			console.log(facet.facet_fields);
+			var facet= data.facet_counts.facet_fields[field];
+			console.log(facet[0]);
 			var uneBalise = "";
-			console.log(facet.facet_fields.role.length);
+			//console.log(facet);
 
-			for (var i = 0; i < facet.facet_fields.role.length; i=i+2){
+			for (var i = 0; i < facet.length; i=i+2){
 				
-			 	var value = facet.facet_fields.role[i];
-			 	var result = facet.facet_fields.role[i+1];
+			 	var value = facet[i];
+			 	var result = facet[i+1];
 				uneBalise += "<p>"+value+" "+result+"</p>";
 			}
 			console.log(uneBalise);
