@@ -15,7 +15,29 @@
                     <div id="section-title">Where Is Justo</div>
                 </div>
 
+                <div id="side_search">
+	                <div id="tags">
+	                	<h1>keywords</h1>
+	                	<p>sport, marcher, pix, tamere, iLoveDino, Yoan, Rulio<p>
+	                </div>
+	                <div id="groupname">
+	                	<h1>group names</h1>
+	                	<p>iLoveDino, FLMMM, BLA, TRUC<p>
+	                </div>
+
+	                <div id="picto">
+	                	<h1>themes</h1>
+	                	<p>picto1 - picto2<p>
+	                	<p>picto3 - picto4<p>
+	                	<p>picto5 - picto6<p>
+	                </div>
+	            </div>
+
 				<form id='form1'>
+					<label>Recherche</label>
+					<input type="text" name="query" class="query" size="60">
+				</br>
+				<!--
 				<select class="type">
 					<option value="all">Tout</option>
 					<option value="person">Personne</option>
@@ -25,15 +47,16 @@
 					<option value="image">Image</option>
 					<option value="city">Ville</option>
 				</select>
-				<input type="text" name="query" class="query" size="60">
+				-->
+				<label>Nombre de résultats</label>
 				<select class="rows">
 					<option value="10">10</option>
 					<option value="20">20</option>
 					<option value="50">50</option>
 				</select>
+				<input type="button" value="rechercher" name="btn_query" class="btn_query">
 			</form>
 
-			<input type="button" value="rechercher" name="btn_query" class="btn_query">
 			<div id="results"></div>
 		</div>
 	</div>
