@@ -59,7 +59,7 @@ body {
 }
 #content-wrapper {
     width:980px;
-    min-height: 550px;
+    min-height: 800px;
     margin: 0 auto;
     background:#fff;
 }
@@ -105,7 +105,8 @@ page 1
     width:700px;
     float:right;
     margin-left:50px;
-    min-height: 500px;
+    margin-bottom: 50px;
+	background-color: white;
 }
 
 #form1 .type{
