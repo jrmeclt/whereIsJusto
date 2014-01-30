@@ -84,7 +84,7 @@ function query(){
 			console.log(data);
 			console.log(data.response.numFound);
 			
-			var html = "<h1>Nombre de r&eacute;sultats:" + data.response.numFound+"</h1>";
+			var html = "<h1>Nombre de r&eacute;sultats : " + data.response.numFound+"</h1><br/>";
 			
 			for (var i = 0; i < data.response.docs.length; i++) {
 				//console.log(data.response.docs[i]);
