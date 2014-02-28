@@ -28,8 +28,24 @@ $("document").ready(function(){
 		query();
    	 	//return $jform.check();
 	});
+	
+	$('.result').live('click', '#headerResult', function() {
+		
+		console.log("on");   	 	//return $jform.check();
+		 //$(this).children().show();
+		// $('.hidden',this).children('.hidden').toggle();
+		$(this).children('.hidden').show();
+		//$('hidden'.this).childNodes.toggle();
+		 //$(this).after("<p>Another paragraph!</p>");
+	});
+	
+	//$( "div .headerResult" ).accordion({ header: "div" })
 
 })
+
+  $(function() {
+    $( "#accordion" ).accordion();
+  });
 
 function query(id,parent){
 	id = id || "";
@@ -60,7 +76,7 @@ function query(id,parent){
 	}
 	
 	
-	request['rows'] = $(".rows").val();	
+	request['rows'] = $(".rows option:selected").val();
 	request['start'] = 0;	
 	request['wt'] = "json";
 	request['']= "";
@@ -106,10 +122,12 @@ function query(id,parent){
 			
 			$("#results").children().remove();
 			
-			console.log(data);
-			console.log(data.response.numFound);
+			//console.log(data);
+			//console.log(data.response.numFound);
 			
-			var html = "<h1>Nombre de r&eacute;sultats : " + data.response.numFound+"</h1><br/>";
+			var html = "<h1>Nombre de r&eacute;sultats : " + data.response.numFound+"</h1><br/><div>";
+			
+			html += "<div id='resultContainer'>"
 			
 			for (var i = 0; i < data.response.docs.length; i++) {
 				//console.log(data.response.docs[i]);
@@ -124,7 +142,7 @@ function query(id,parent){
 
 				}
 				else if(result.role=='text'||'audio'||'video'||'image'){
-					console.log("qqch");
+					//console.log("qqch");
 					html += afficherMedia(result);
 				}
 				
@@ -134,6 +152,19 @@ function query(id,parent){
 				}
 
 				//$( "div" ).append( document.createTextNode(i+1+" "+result.role));
+			}
+			
+			html += "</div>"
+
+			
+			if(data.response.numFound>request['rows']){
+				var resultat = data.response.numFound;
+				var resultatparpage = request['rows'];
+				console.log(resultatparpage);
+				var nbpagebrut = resultat / resultatparpage;
+				var nbpage = Math.ceil(nbpagebrut);
+				console.log(nbpage);
+				html+="<p>page1 de "+nbpage+"</p>";
 			}
 			
 			$("#results").html(html);
@@ -146,28 +177,28 @@ function query(id,parent){
 };
 
 function afficherPersonne(person){
-						console.log(person['firstname']);
+						//console.log(person['firstname']);
 						pictoUrl='images/picto/person'
 	
-				var html = "<div class='person'><img src='images/picto/person.gif'/> "+person['firstname']+" "+person['lastname']+"</div>";
+				var html = "<div class='result' id='person'><div id='headerResult'><img src='images/picto/person.gif'/> "+person['firstname']+" "+person['lastname']+"</div><div id='contentResult' class='hidden'><br>"+person['biography']+"</div>";
 	
 	return html;		
 
 }
 
 function afficherVille(city){
-						console.log(city);
+						//console.log(city);
 	
-	var html = '<div class="city"><img src="images/picto/city.gif"/> '+city["city.code"]+' '+city["city.name"]+' '+city["city.region.name"]+'</div>';
+	var html = '<div class="class="result" id="city"><img src="images/picto/city.gif"/>N° postal: '+city["city.code"]+'<br>Localité: '+city["city.name"]+'<br>Canton: '+city["city.region.name"]+'</div>';
 	
 	return html;				
 
 }
 
 function afficherMedia(media){
-						console.log(media);
+						//console.log(media);
 	
-	var html = '<div class="text"><img src="images/picto/'+media.role+'.gif"/> '+media["groupname"]+'</div>';
+	var html = '<div class="result" id='+media.role+'><img src="images/picto/'+media.role+'.gif"/> '+media["title"]+'</div>';
 	
 	return html;				
 
@@ -202,7 +233,7 @@ function getFacet(field){
 		success: function (data) {
 			
 			var facet= data.facet_counts.facet_fields[field];
-			console.log(facet[0]);
+			//console.log(facet[0]);
 			var uneBalise = "";
 			//console.log(facet);
 
@@ -212,7 +243,7 @@ function getFacet(field){
 			 	var result = facet[i+1];
 				uneBalise += "<p id='"+value+"' class='facet'>"+value+" "+result+"</p>";
 			}
-			console.log(uneBalise);
+			//console.log(uneBalise);
 			$("#"+field+"").append(uneBalise);
 		}
 	
