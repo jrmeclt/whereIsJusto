@@ -45,11 +45,16 @@ $("document").ready(function(){
 		query();
 	});
 	
-	$('.hidden').on('click', '#headerResult', function() {
+	$('.sort').on('change','',function(){
+		console.log('hellllo');
+		query();
+	});
+	
+	$('.result').live('click', '.hidden', function() {
 		
 		//console.log("on");   	 	//return $jform.check();
 		//$('.hidden',this).show();
-		 //$(this).children().show();
+		$(this).children().toggle();
 		// $('.hidden',this).children('.hidden').toggle();
 		//$(this).children('.hidden').show();
 		//$('hidden'.this).childNodes.toggle();
@@ -60,15 +65,13 @@ $("document").ready(function(){
 
 })
 
-  $(function() {
-    $( "#accordion" ).accordion();
-  });
 
-function query(id,parent,page,pageActuelRecu){
+function query(id,parent,page,pageActuelRecu,sort){
 	id = id || "";
 	parent = parent || "";
 	page = page || "";
 	pageActuelRecu = pageActuelRecu || "";
+	sort = sort || "";
 	//reqVal= $(".query").val();
 	//console.log(reqVal);
 	//console.log(page);
@@ -98,6 +101,7 @@ function query(id,parent,page,pageActuelRecu){
 	
 	
 	request['rows'] = $(".rows option:selected").val();
+	request['sort'] = $(".sort option:selected").val();
 	
 	if(page.length){
 	console.log("bouhouuou");
@@ -222,7 +226,7 @@ function afficherPersonne(person){
 						//console.log(person['firstname']);
 						pictoUrl='images/picto/person'
 	
-				var html = "<div class='result' id='person'><div id='headerResult'><img src='images/picto/person.gif'/> "+person['firstname']+" "+person['lastname']+"</div><div id='contentResult' class='hidden'><br>"+person['biography']+"</div>";
+				var html = "<div class='result' id='person'><div id='headerResult'><img src='images/picto/person.gif'/> "+person['firstname']+" "+person['lastname']+"</div><div id='contentResult' class='hidden'><br>"+person['biography']+"</div></div>";
 	
 	return html;		
 
