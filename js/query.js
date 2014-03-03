@@ -1,123 +1,115 @@
 $("document").ready(function(){
+
+	//va cherceher la fonction getfacet selon le role, le tag et le groupname
 	getFacet('role');
 	getFacet('tag');
 	getFacet('groupname');
-
+	
+	
+	//lance la fonction query() si le le formulaire de recherche et cliqué
 	$(".btn_query").click(function(){
-		 	//cherche la requete
-		 	
-		 	//console.log(reqVal);
+
 		 	query();
+		 	
 	});
 	
+	
+	//lance une requete avec le menu de facettes
 	$("#side_search").on('click', '.facet', function(){
-		 	//cherche la requete
-		 	//$( this ).slideUp();
-		 	//console.log(reqVal);
+
 		 	var keyword = $(this).attr('id');
 		 	var parent = $(this).parent().attr('id');
 		 	$(".query").val(parent+':'+keyword);
-
-		 	
-		 	
-		 	//console.log(keyword+parent);
 		 	
 		 	query(keyword,parent);
 	});
 	
 	
+	//lance la requete lorsque l'on appuie sur enter
 	$('#form1').submit(function() {
 		event.preventDefault();
 		query();
-   	 	//return $jform.check();
 	});
 	
+	//affiche les résultat suivant lorsque l'on clique sur page suivante
 	$('#page').on('click', '.pageSuivante',function() {
-		//event.preventDefault();
-		//var page = $(this).attr('value');
+
 		var page = $(".pageSuivante").attr('id');
 		var parent = $(".nbpage").attr('id');
 
 		console.log(parent);
 		query('','',page,parent);
-   	 	//return $jform.check();
 	});
 	
-	$('#page').on('click', '.pagePrecedante',function() {
-		//event.preventDefault();
-		//var page = $(this).attr('value');
-		var page = $(".pagePrecedante").attr('id');
+	
+	//affiche les résultat précédents lorsque l'on clique sur page suivante
+	$('#page').on('click', '.pagePrecedente',function() {
+		
+		var page = $(".pagePrecedente").attr('id');
 		var parent = $(".nbpage").attr('id');
 		
 		parent = Number(parent)-2;
 
 		console.log(parent);
 		query('','',page,parent);
-   	 	//return $jform.check();
 	});
 	
+	//change le nombre de ligne affichée lorsque intervient un changement dans le select
 	$('.rows').on('change','',function(){
 		console.log('helo');
 		query();
 	});
 	
+	//change le type de tri lorsque intervient un changement dans le select
 	$('.sort').on('change','',function(){
 		console.log('hellllo');
 		query();
 	});
 	
+	//change le type de tri ascendant ou descenant lorsque intervient un changement dans le select
 	$('.order').on('change','',function(){
 		console.log('hellllo');
 		query();
 	});
 	
+	//affiche le résultat qui nous intéresse
 	$('.result').live('click', '.hidden', function() {
 		
-		//console.log("on");   	 	//return $jform.check();
-		//$('.hidden',this).show();
 		$(this).children('.hidden').toggle();
-		// $('.hidden',this).children('.hidden').toggle();
-		//$(this).children('.hidden').show();
-		//$('hidden'.this).childNodes.toggle();
-		 //$(this).after("<p>Another paragraph!</p>");
+
 	});
 	
-	//$( "div .headerResult" ).accordion({ header: "div" })
-
 })
 
+//fonction ajax qui va chercher les résultats
+//param id: valeur du keyword qui est dans le menu des facettes
+//param parent: valeur du parent de keyword dans le menu des facettes (role, tag, groupnames)
+//param page: page que l'on a consulté précédement
+//param page: page que l'on va consulté
 
-function query(id,parent,page,pageActuelRecu,sort,order){
+function query(id,parent,page,pageActuelRecu){
 	id = id || "";
 	parent = parent || "";
 	page = page || "";
 	pageActuelRecu = pageActuelRecu || "";
-	sort = sort || "";
-	order = order || "";
-	//reqVal= $(".query").val();
-	//console.log(reqVal);
-	//console.log(page);
-	//var page = 100;
-	
-	console.log(id.length);
-	
-	
-	//var query=$(".query").val();
-	if($(".query").val() != ''){
-		//q='*:*';
-		var q=$(".query").val();
 
+	//test si il y a qqch dans le champs de recherche
+	if($(".query").val() != ''){
+		var q=$(".query").val();
 	}
+	//prend la valeur de recherche générale
 	else {
 		var q = '*:*';
 	}
 	
-	var request = {};	
-	if(id.length){
-		//var truc = $(".").val();
-		//$(".query").val()=parent+':'+id
+	
+	//construction du paramètre
+	var request = {};
+		
+	if(id.length){		
 		request['q']= parent+':'+id;
 	}
+	
 	else{
 		request['q'] = q;
 	}
@@ -130,83 +122,49 @@ function query(id,parent,page,pageActuelRecu,sort,order){
 	}
 	
 	request['rows'] = $(".rows option:selected").val();
-	//request['sort'] = $(".sort option:selected").val()+" "+$(".order option:selected").val();
-	//request['order'] = $(".sort option:selected").val();
-
 	
 	if(page.length){
-	console.log("bouhouuou");
-	request['start'] = page;
+		request['start'] = page;
 	}
 	else{
-	request['start']=0;
+		request['start']=0;
 	}
 		
 	request['wt'] = "json";
-	//request['']= "";
 	var dataType = 'jsonp';
 	var url="http://localhost:8983/solr/select";	
-	/*$.ajax(dataType, url, request, function(result, status, data) {	
-	 	 var documents = result.response.docs;	
-	 	 for ( var i = 0; i < documents.length; i++) {	
-	 	 displayDocument(documents[i]);	
-	 	 }
-	 	 });	
-	 
-
-	
-	var q=$(".query").val();
-	var rows=$(".rows").val();
-	var type=$(".type").val();
-	var nbpage=4;
-	var start=(nbpage*rows)-rows+1;
-	
-	console.log(rows);
-	console.log(type);
-	console.log(start);
-	*/
-	
+		
 	$.ajax({
-		//type: "POST",
 		dataType: "jsonp",
 		url: url,
 		
 		'jsonp': 'json.wrf',
 		'data': request,
 		
-		
-		
-		//data: { start_date : start_date, end_date: end_date, sexe: sexe, species: species },
+		//en cas d'erreur
 		error: function () {
 			console.log('error');
 		},
+		//en cas de succés
 		success: function (data) {
-			//for (var i = 0; i < data.length; i++) {
-			//}
 			
 			$("#results").children().remove();
-			
-			//console.log(data);
-			//console.log(data.response.numFound);
 			
 			var html = "<h1>"+ data.response.numFound+" résultats</h1><br/><div>";
 			
 			html += "<div id='resultContainer'>"
 			
 			for (var i = 0; i < data.response.docs.length; i++) {
-				//console.log(data.response.docs[i]);
 				
 				var result=data.response.docs[i];
 				if(result.role=='person'){
 					html += afficherPersonne(result);
 				}
 				else if(result.role=='city'){
-					//console.log("ville");
 					html += afficherVille(result);
 
 				}
 				else if(result.role=='text'||'audio'||'video'||'image'){
-					//console.log("qqch");
 					html += afficherMedia(result);
 				}
 				
@@ -215,11 +173,8 @@ function query(id,parent,page,pageActuelRecu,sort,order){
 					console.log('erreur');
 				}
 
-				//$( "div" ).append( document.createTextNode(i+1+" "+result.role);
 			}
 			
-			html += "</div>"
-
 			
 			if(data.response.numFound>request['rows']){
 				var resultat = data.response.numFound;
@@ -240,22 +195,31 @@ function query(id,parent,page,pageActuelRecu,sort,order){
 				$("#page").children().remove();
 				
 				
-				var pagesuivante="<p class='nbpage' id='"+pageActuel+"'>page "+pageActuel+" de "+nbpage+"</p><p class='pageSuivante' id='"+nextStart+"'>Page suivante</p>";
-				var pageprecedante="<p class='pagePrecedante' id='"+previousStart+"'>Page précédente</p>";
+				var pageresultats="<p class='nbpage' id='"+pageActuel+"'>page "+pageActuel+" de "+nbpage+"</p>";
+				var pagesuivante="<p class='pageSuivante' id='"+nextStart+"'>Page suivante</p>";
+				var pageprecedente="<p class='pagePrecedente' id='"+previousStart+"'>Page précédente</p>";
 				
 				if (pageActuel==1){
+					$("#page").append(pageresultats);
 					$("#page").append(pagesuivante);
 				}
 				else if (pageActuel==nbpage){
-					$("#page").append(pageprecedante);
+					$("#page").append(pageresultats);
+					$("#page").append(pageprecedente);
 
 				}
+				else if (nbpage==1){
+					$("#page").append(pageresultats);
+				}
 				else {
+					$("#page").append(pageresultats);
 					$("#page").append(pagesuivante);
-					$("#page").append(pageprecedante);
+					$("#page").append(pageprecedente);
 				}
 
 			}
+			
+			html += "</div>"
 			
 			$("#results").html(html);
 			
@@ -265,6 +229,7 @@ function query(id,parent,page,pageActuelRecu,sort,order){
 
 };
 
+//fonction d'affichage des résulats des personnes
 function afficherPersonne(person){
 				pictoUrl='images/picto/person';
 				var date = new Date(person['birthdate']);
@@ -290,8 +255,9 @@ function afficherPersonne(person){
 
 }
 
+
+//fonction d'affichage des résulats des villes
 function afficherVille(city){
-						//console.log(city);
 	
 	var html = "<div class='result' id='city'><img src='images/picto/city.gif'/><div id='headerResult'>";
 	html += "<p>"+city['city.code']+" "+city['city.name']+"</p></div>";
@@ -303,8 +269,8 @@ function afficherVille(city){
 
 }
 
+//fonction d'affichage des résulats des médias
 function afficherMedia(media){
-						console.log(media);
 	
 	var html = "<div class='result' id='"+media.role+"'><img src='images/picto/"+media.role+".gif'/>";
 	html += "<div id='headerResult'>"+media['title']+"</div>";
@@ -317,6 +283,7 @@ function afficherMedia(media){
 
 }
 
+//fonction qui va chercher les facettes à construires
 function getFacet(field){
 	var request = {};	
 	request['q'] = '*:*';	
@@ -331,7 +298,6 @@ function getFacet(field){
 	var url="http://localhost:8983/solr/select";
 
 	$.ajax({
-		//type: "POST",
 		dataType: "jsonp",
 		url: url,
 		
@@ -339,16 +305,13 @@ function getFacet(field){
 		'data': request,
 		
 		
-		//data: { start_date : start_date, end_date: end_date, sexe: sexe, species: species },
 		error: function () {
 			console.log('error');
 		},
 		success: function (data) {
 			
 			var facet= data.facet_counts.facet_fields[field];
-			//console.log(facet[0]);
 			var uneBalise = "";
-			//console.log(facet);
 
 			for (var i = 0; i < facet.length; i=i+2){
 				
@@ -356,7 +319,6 @@ function getFacet(field){
 			 	var result = facet[i+1];
 				uneBalise += "<p id='"+value+"' class='facet'>"+value+" ("+result+")</p>";
 			}
-			//console.log(uneBalise);
 			$("#"+field+"").append(uneBalise);
 		}
 	
