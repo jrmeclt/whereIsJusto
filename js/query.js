@@ -40,12 +40,30 @@ $("document").ready(function(){
    	 	//return $jform.check();
 	});
 	
+	$('#page').on('click', '.pagePrecedante',function() {
+		//event.preventDefault();
+		//var page = $(this).attr('value');
+		var page = $(".pagePrecedante").attr('id');
+		var parent = $(".nbpage").attr('id');
+		
+		parent = Number(parent)-2;
+
+		console.log(parent);
+		query('','',page,parent);
+   	 	//return $jform.check();
+	});
+	
 	$('.rows').on('change','',function(){
 		console.log('helo');
 		query();
 	});
 	
 	$('.sort').on('change','',function(){
+		console.log('hellllo');
+		query();
+	});
+	
+	$('.order').on('change','',function(){
 		console.log('hellllo');
 		query();
 	});
@@ -66,12 +84,13 @@ $("document").ready(function(){
 })
 
 
-function query(id,parent,page,pageActuelRecu,sort){
+function query(id,parent,page,pageActuelRecu,sort,order){
 	id = id || "";
 	parent = parent || "";
 	page = page || "";
 	pageActuelRecu = pageActuelRecu || "";
 	sort = sort || "";
+	order = order || "";
 	//reqVal= $(".query").val();
 	//console.log(reqVal);
 	//console.log(page);
@@ -99,9 +118,17 @@ function query(id,parent,page,pageActuelRecu,sort){
 		request['q'] = q;
 	}
 	
+	if($(".sort option:selected").val() != ''){
+		request['sort'] = $(".sort option:selected").val()+" "+$(".order option:selected").val();
+	}
+	else{
+		request['sort'] = '';
+	}
 	
 	request['rows'] = $(".rows option:selected").val();
-	request['sort'] = $(".sort option:selected").val();
+	//request['sort'] = $(".sort option:selected").val()+" "+$(".order option:selected").val();
+	//request['order'] = $(".sort option:selected").val();
+
 	
 	if(page.length){
 	console.log("bouhouuou");
@@ -195,6 +222,7 @@ function query(id,parent,page,pageActuelRecu,sort){
 				var resultatparpage = request['rows'];
 				console.log(request['start']);
 				var nextStart= Number(request['start'])+Number(resultatparpage);
+				var previousStart= Number(request['start'])-Number(resultatparpage);
 				console.log(nextStart);
 				console.log(resultatparpage);
 				var nbpagebrut = resultat / resultatparpage;
@@ -208,8 +236,12 @@ function query(id,parent,page,pageActuelRecu,sort){
 				$("#page").children().remove();
 				
 				var pagesuivante="<p class='nbpage' id='"+pageActuel+"'>page "+pageActuel+" de "+nbpage+"</p><p class='pageSuivante' id='"+nextStart+"'>Page suivante</p>";
+				var pageprecedante="<p class='pagePrecedante' id='"+previousStart+"'>Page précédente</p>";
+
 				//html += ...;
 				$("#page").append(pagesuivante);
+				$("#page").append(pageprecedante);
+				
 
 			}
 			
@@ -244,7 +276,7 @@ function afficherVille(city){
 function afficherMedia(media){
 						console.log(media);
 	
-	var html = '<div class="result" id='+media.role+'><img src="images/picto/'+media.role+'.gif"/> '+media["title"]+'<a href="http://comem.trucmu.ch/mrm/medias/'+media["groupname"]+'/'+media["role"]+'/'+media["filename"]+'/"></div>';
+	var html = '<div class="result" id='+media.role+'><img src="images/picto/'+media.role+'.gif"/> '+media["title"]+ '<a href="http://comem.trucmu.ch/mrm/medias/'+media["groupname"]+'/'+media["role"]+'/'+media["filename"]+'"> Lire le fichier</a></div>';
 	
 	return html;				
 
