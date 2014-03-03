@@ -154,7 +154,7 @@ function query(id,parent,page,pageActuelRecu){
 			//console.log(data);
 			//console.log(data.response.numFound);
 			
-			var html = "<h1>Nombre de r&eacute;sultats : " + data.response.numFound+"</h1><br/><div>";
+			var html = "<h1>"+ data.response.numFound+" résultats</h1><br/><div>";
 			
 			html += "<div id='resultContainer'>"
 			
@@ -180,7 +180,7 @@ function query(id,parent,page,pageActuelRecu){
 					console.log('erreur');
 				}
 
-				//$( "div" ).append( document.createTextNode(i+1+" "+result.role));
+				//$( "div" ).append( document.createTextNode(i+1+" "+result.role);
 			}
 			
 			html += "</div>"
@@ -231,7 +231,7 @@ function afficherPersonne(person){
 function afficherVille(city){
 						//console.log(city);
 	
-	var html = '<div class="class="result" id="city"><img src="images/picto/city.gif"/>N° postal: '+city["city.code"]+'<br>Localité: '+city["city.name"]+'<br>Canton: '+city["city.region.name"]+'</div>';
+	var html = '<div class="result" id="city"><img src="images/picto/city.gif"/>'+city["city.code"]+" "+city["city.name"]+"  -"+city["city.region.name"]+'</div>';
 	
 	return html;				
 
@@ -240,7 +240,7 @@ function afficherVille(city){
 function afficherMedia(media){
 						console.log(media);
 	
-	var html = '<div class="result" id='+media.role+'><img src="images/picto/'+media.role+'.gif"/> '+media["title"]+'<a href="http://comem.trucmu.ch/mrm/medias/'+media["groupname"]+'/'+media["role"]+'/'+media["filename"]+'">Vers le fichier</a></div>';
+	var html = '<div class="result" id='+media.role+'><img src="images/picto/'+media.role+'.gif"/> '+media["title"]+'<a href="http://comem.trucmu.ch/mrm/medias/'+media["groupname"]+'/'+media["role"]+'/'+media["filename"]+'/"></div>';
 	
 	return html;				
 
@@ -283,7 +283,7 @@ function getFacet(field){
 				
 			 	var value = facet[i];
 			 	var result = facet[i+1];
-				uneBalise += "<p id='"+value+"' class='facet'>"+value+" "+result+"</p>";
+				uneBalise += "<p id='"+value+"' class='facet'>"+value+" ("+result+")</p>";
 			}
 			//console.log(uneBalise);
 			$("#"+field+"").append(uneBalise);

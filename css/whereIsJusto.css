@@ -28,7 +28,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
     line-height: 1;
-    font-family: 'aaarghnormal';
+    font-family: arial;
 }
 
 .hidden {
@@ -56,12 +56,13 @@ table {
 WHERE IS JUSTO 
 *******************************/
 body {
-    background-color: #E5E8E7;
+    background-color: white;
     font-family: Helvetica, Arial, Verdana, sans-serif;
 }
 
 #main-wrapper {
     margin: 0 auto;
+	
 }
 #content-wrapper {
     width:980px;
@@ -75,6 +76,20 @@ body {
     margin-bottom: 30px;
     background:#0E685C;
     min-height: 40px;
+	padding: 15px;
+    -webkit-border-top-left-radius: 15px;
+    -moz-border-radius-topleft:15px;
+    border-top-left-radius:15px;
+    -webkit-border-top-right-radius:15px;
+    -moz-border-radius-topright:15px;
+    border-top-right-radius:15px;
+    -webkit-border-bottom-right-radius:15px;
+    -moz-border-radius-bottomright:15px;
+    border-bottom-right-radius:15px;
+    -webkit-border-bottom-left-radius:15px;
+    -moz-border-radius-bottomleft:15px;
+    border-bottom-left-radius:15px;
+	margin-bottom: 50px;
 }
 #section-title {
     float:left;
@@ -92,8 +107,27 @@ h1 {
 page 1
 *****************/
 #side_search {
+	
     width: 200px;
     float:left;
+}
+
+#role, #tag, #groupname{
+	background: #F2EFEF;
+    padding: 15px;
+    -webkit-border-top-left-radius: 15px;
+    -moz-border-radius-topleft:15px;
+    border-top-left-radius:15px;
+    -webkit-border-top-right-radius:15px;
+    -moz-border-radius-topright:15px;
+    border-top-right-radius:15px;
+    -webkit-border-bottom-right-radius:15px;
+    -moz-border-radius-bottomright:15px;
+    border-bottom-right-radius:15px;
+    -webkit-border-bottom-left-radius:15px;
+    -moz-border-radius-bottomleft:15px;
+    border-bottom-left-radius:15px;
+	margin-bottom: 50px;
 }
 
 #side_search p{
@@ -103,18 +137,57 @@ page 1
 #tag, #groupname,#role  {
     width:180px;
     float:left;
-    margin-left:20px;
-    min-height: 150px;
+    min-height: 200px;
 }
 
-#form1, #results {
+#form1, #resultContainer, #results {
     width:700px;
-    float:right;
     margin-left:50px;
     margin-bottom: 50px;
-	background-color: white;
+	line-height: 50px;
+	float:right;
 }
 
+#results {
+	line-height: 20px;
+}
+
+
+#form1 label {
+	display: block;
+	line-height: 50px;
+	width: 30%;
+	float:left;
+	}
+input{
+	width:300px;
+	height: 20px;
+}
+
+.btn_query {
+	border: 1px solid #F2EFEF;
+	width: 100px;
+	height: 50px;
+	float: right;
+	background: #F2EFEF;
+	font-weight: bold;
+	font-size: 16px;
+    -webkit-border-top-left-radius: 15px;
+    -moz-border-radius-topleft:15px;
+    border-top-left-radius:15px;
+    -webkit-border-top-right-radius:15px;
+    -moz-border-radius-topright:15px;
+    border-top-right-radius:15px;
+    -webkit-border-bottom-right-radius:15px;
+    -moz-border-radius-bottomright:15px;
+    border-bottom-right-radius:15px;
+    -webkit-border-bottom-left-radius:15px;
+    -moz-border-radius-bottomleft:15px;
+    border-bottom-left-radius:15px;
+	margin-bottom: 20px;
+	padding: 5px;
+}
+	
 #form1 .type{
     width: 100px;
     margin: 5px;
@@ -127,4 +200,18 @@ page 1
 
 .facet {
 	cursor: pointer;
+}
+
+.result img{
+	margin-right: 20px;
+}
+
+#audio a, #image a, #text a, #video a{
+	color: grey;
+	text-decoration: none;
+}
+
+#audio a:hover, #image a:hover, #text a:hover, #video a:hover {
+	color: black;
+	font-weight: bold;
 }
