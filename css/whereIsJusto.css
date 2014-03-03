@@ -215,3 +215,7 @@ input{
 	color: black;
 	font-weight: bold;
 }
+
+.pageSuivante {
+	cursor: pointer;
+}
