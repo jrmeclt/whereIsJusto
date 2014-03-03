@@ -255,10 +255,24 @@ function query(id,parent,page,pageActuelRecu,sort,order){
 };
 
 function afficherPersonne(person){
-						//console.log(person['firstname']);
-						pictoUrl='images/picto/person'
+						console.log(person);
+				pictoUrl='images/picto/person';
+				var date = new Date(person['birthdate']);
+
+				var day = date.getDate();
+				var month = date.getMonth();
+				var year = date.getFullYear();
+				var dateFormated = day+"."+month+"."+year; 
 	
-				var html = "<div class='result' id='person'><div id='headerResult'><img src='images/picto/person.gif'/> "+person['firstname']+" "+person['lastname']+"</div><div id='contentResult' class='hidden'><br>"+person['biography']+"</div></div>";
+				var html = "<div class='result' id='person'><img src='images/picto/person.gif'/><div id='headerResult'>";
+				
+				html +=person['firstname']+" "+person['lastname']+"</div>";
+				html +="<div id='contentResult' class='hidden'>";
+				html +="<p>Domicile: "+person['city.code']+" "+person['city.name']+"</p>";
+				html +="<p>Date de naissance: "+dateFormated+"</p>";
+				html +="<p>Biographie: "+person['biography']+"</p>";
+				html +="<p>Hobby: "+person['hobby']+"</p>";
+				html +="</div></div>";
 				
 				
 	
@@ -269,7 +283,11 @@ function afficherPersonne(person){
 function afficherVille(city){
 						//console.log(city);
 	
-	var html = '<div class="result" id="city"><img src="images/picto/city.gif"/>'+city["city.code"]+" "+city["city.name"]+"  -"+city["city.region.name"]+'</div>';
+	var html = "<div class='result' id='city'><img src='images/picto/city.gif'/><div id='headerResult'>";
+	html += "<p>"+city['city.code']+" "+city['city.name']+"</p></div>";
+	html +="<div id='contentResult' class='hidden'>";
+	html += "<p>"+city['city.region.name']+"</p>";
+	html += "</div></div>";
 	
 	return html;				
 
@@ -278,7 +296,12 @@ function afficherVille(city){
 function afficherMedia(media){
 						console.log(media);
 	
-	var html = '<div class="result" id='+media.role+'><img src="images/picto/'+media.role+'.gif"/> '+media["title"]+ '<a href="http://comem.trucmu.ch/mrm/medias/'+media["groupname"]+'/'+media["role"]+'/'+media["filename"]+'"> Lire le fichier</a></div>';
+	var html = "<div class='result' id='"+media.role+"'><img src='images/picto/"+media.role+".gif'/>";
+	html += "<div id='headerResult'>"+media['title']+"</div>";
+	html += "<div id='contentResult' class='hidden'>";
+	html += "<p>"+media['role']+"</p>";
+	html +=	 "<a href='http://comem.trucmu.ch/mrm/medias/"+media['groupname']+"/"+media['role']+"/"+media['filename']+"'> Lire le fichier</a>";
+	html += "</div></div>";
 	
 	return html;				
 
