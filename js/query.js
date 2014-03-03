@@ -16,6 +16,9 @@ $("document").ready(function(){
 		 	//console.log(reqVal);
 		 	var keyword = $(this).attr('id');
 		 	var parent = $(this).parent().attr('id');
+		 	$(".query").val(parent+':'+keyword);
+
+		 	
 		 	
 		 	//console.log(keyword+parent);
 		 	
@@ -112,6 +115,7 @@ function query(id,parent,page,pageActuelRecu,sort,order){
 	var request = {};	
 	if(id.length){
 		//var truc = $(".").val();
+		//$(".query").val()=parent+':'+id
 		request['q']= parent+':'+id;
 	}
 	else{
