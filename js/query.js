@@ -40,6 +40,11 @@ $("document").ready(function(){
    	 	//return $jform.check();
 	});
 	
+	$('.rows').on('change','',function(){
+		console.log('helo');
+		query();
+	});
+	
 	$('.hidden').on('click', '#headerResult', function() {
 		
 		//console.log("on");   	 	//return $jform.check();
