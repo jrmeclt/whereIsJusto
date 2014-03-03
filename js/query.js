@@ -72,7 +72,7 @@ $("document").ready(function(){
 		
 		//console.log("on");   	 	//return $jform.check();
 		//$('.hidden',this).show();
-		$(this).children().toggle();
+		$(this).children('.hidden').toggle();
 		// $('.hidden',this).children('.hidden').toggle();
 		//$(this).children('.hidden').show();
 		//$('hidden'.this).childNodes.toggle();
@@ -259,6 +259,8 @@ function afficherPersonne(person){
 						pictoUrl='images/picto/person'
 	
 				var html = "<div class='result' id='person'><div id='headerResult'><img src='images/picto/person.gif'/> "+person['firstname']+" "+person['lastname']+"</div><div id='contentResult' class='hidden'><br>"+person['biography']+"</div></div>";
+				
+				
 	
 	return html;		
 
