@@ -235,22 +235,29 @@ function query(id,parent,page,pageActuelRecu,sort,order){
 				if(isNaN(pageActuel)) {
 					var pageActuel = 1;
 				}
-				console.log(nbpage);
+				
 				
 				$("#page").children().remove();
 				
+				
 				var pagesuivante="<p class='nbpage' id='"+pageActuel+"'>page "+pageActuel+" de "+nbpage+"</p><p class='pageSuivante' id='"+nextStart+"'>Page suivante</p>";
 				var pageprecedante="<p class='pagePrecedante' id='"+previousStart+"'>Page précédente</p>";
-
-				//html += ...;
-				$("#page").append(pagesuivante);
-				$("#page").append(pageprecedante);
 				
+				if (pageActuel==1){
+					$("#page").append(pagesuivante);
+				}
+				else if (pageActuel==nbpage){
+					$("#page").append(pageprecedante);
+
+				}
+				else {
+					$("#page").append(pagesuivante);
+					$("#page").append(pageprecedante);
+				}
 
 			}
 			
 			$("#results").html(html);
-			//$( "div.demo-container" ).html('1233');
 			
 		}
 	
@@ -259,7 +266,6 @@ function query(id,parent,page,pageActuelRecu,sort,order){
 };
 
 function afficherPersonne(person){
-						console.log(person);
 				pictoUrl='images/picto/person';
 				var date = new Date(person['birthdate']);
 
