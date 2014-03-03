@@ -219,3 +219,6 @@ input{
 .pageSuivante {
 	cursor: pointer;
 }
+.pagePrecedante {
+	cursor: pointer;
+}
